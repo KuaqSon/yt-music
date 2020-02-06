@@ -15,24 +15,23 @@ const getAudioSource = async vid => {
       "-focus-opensocial.googleusercontent.com/gadgets/proxy?container=none&url=https%3A%2F%2Fwww.youtube.com%2Fget_video_info%3Fvideo_id%3D" +
       vid
   ).then(response => {
-    console.log("response", response);
     let audio_streams = {};
     if (!response.ok) {
       return null;
     }
     return response.text().then(data => {
       const parseData = parse_str(data),
-        streams = (
-          parseData.url_encoded_fmt_stream_map +
-          "," +
-          parseData.adaptive_fmts
-        ).split(",");
+        playerResp = JSON.parse(parseData.player_response);
 
-      streams.forEach(function(s, n) {
-        const stream = parse_str(s),
-          itag = stream.itag * 1;
+      let adaptiveFormats = [];
+
+      if (playerResp && playerResp.streamingData && playerResp.streamingData.adaptiveFormats) {
+        adaptiveFormats = playerResp.streamingData.adaptiveFormats;
+      }
+
+      adaptiveFormats.forEach(function(stream, n) {
+        const itag = stream.itag * 1;
         let quality = false;
-        console.log(stream);
         switch (itag) {
           case 139:
             quality = "48kbps";
@@ -46,8 +45,6 @@ const getAudioSource = async vid => {
         }
         if (quality) audio_streams[quality] = stream.url;
       });
-
-      console.log("audio_streams", audio_streams);
 
       return audio_streams["128kbps"];
     });
@@ -64,4 +61,14 @@ const getAudioInfo = async vid => {
   });
 };
 
-export { getAudioSource, getAudioInfo };
+const getVidFromYoutubeUrl = url => {
+  const video_id = url.split("v=")[1];
+  const ampersandPosition = video_id.indexOf("&");
+  if (ampersandPosition !== -1) {
+    return video_id.substring(0, ampersandPosition);
+  }
+
+  return "";
+};
+
+export { getAudioSource, getAudioInfo, getVidFromYoutubeUrl };
