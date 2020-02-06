@@ -4,6 +4,7 @@ import "./App.css";
 
 function App() {
   const [audioSrc, setAudioSrc] = useState("");
+  const [activeMenu, setActiveMenu] = useState(0);
 
   useEffect(() => {
     getAudioSource("9ue1DivJxes").then(src => {
@@ -15,15 +16,34 @@ function App() {
     });
   }, []);
 
+  const getNaviClass = key => {
+    if (key === activeMenu) {
+      return "tab_item active";
+    } else {
+      return "tab_item";
+    }
+  };
+
   return (
     <div className="App">
-      <audio
-        id="youtube"
-        autoPlay={true}
-        controls={true}
-        loop={true}
-        src={audioSrc}
-      ></audio>
+      <div className="wrapper">
+        <nav className="tabs">
+          <div className="selector" style={{ width: "112px", left: `${activeMenu * 112}px` }}></div>
+          <a href="#" className={getNaviClass(0)} onClick={() => setActiveMenu(0)}>
+            New
+          </a>
+          <a href="#" className={getNaviClass(1)} onClick={() => setActiveMenu(1)}>
+            Player
+          </a>
+          <a href="#" className={getNaviClass(2)} onClick={() => setActiveMenu(2)}>
+            PlayList
+          </a>
+        </nav>
+      </div>
+
+      <div>
+        <audio id="youtube" autoPlay={true} controls={true} loop={true} src={audioSrc}></audio>
+      </div>
     </div>
   );
 }
