@@ -15,7 +15,7 @@ export default function NewSong({ addSongCallback }) {
       return;
     }
 
-    const isMobile = videoUrl.indexOf("youtu.be") > -1;
+    const isMobile = videoUrl.indexOf("youtu.be") > -1 && videoUrl.indexOf("youtube") < 0;
 
     let video_id = videoUrl.split(isMobile ? ".be/" : "v=")[1] || "";
 
