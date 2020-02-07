@@ -10,7 +10,7 @@ export default function NewSong({ addSongCallback }) {
   const handleAddSong = () => {
     if (!videoUrl) return;
 
-    if (videoUrl.indexOf("youtube") < 0 || videoUrl.indexOf("youtu.be") < 0) {
+    if (videoUrl.indexOf("youtube") < 0 && videoUrl.indexOf("youtu.be") < 0) {
       setError("Not a youtube link!");
       return;
     }
