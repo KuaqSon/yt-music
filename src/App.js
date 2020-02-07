@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getAudioSource, getAudioInfo } from "./service/audio";
 import "./App.css";
+import NewSong from "./components/NewSong";
 
 function App() {
   const [audioSrc, setAudioSrc] = useState("");
   const [activeMenu, setActiveMenu] = useState(0);
 
-  useEffect(() => {
-    getAudioSource("9ue1DivJxes").then(src => {
-      console.log("TCL: App -> src", src);
-      setAudioSrc(src);
-    });
-    getAudioInfo("9ue1DivJxes").then(info => {
-      console.log("TCL: App -> info", info);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getAudioSource("9ue1DivJxes").then(src => {
+  //     console.log("TCL: App -> src", src);
+  //     setAudioSrc(src);
+  //   });
+  //   getAudioInfo("9ue1DivJxes").then(info => {
+  //     console.log("TCL: App -> info", info);
+  //   });
+  // }, []);
 
   const getNaviClass = key => {
     if (key === activeMenu) {
@@ -22,6 +23,11 @@ function App() {
     } else {
       return "tab_item";
     }
+  };
+
+  const handleAddSongCallBack = data => {
+    setAudioSrc(data.src);
+    setActiveMenu(1);
   };
 
   return (
@@ -41,9 +47,14 @@ function App() {
         </nav>
       </div>
 
-      <div>
-        <audio id="youtube" autoPlay={true} controls={true} loop={true} src={audioSrc}></audio>
-      </div>
+      {activeMenu === 0 && <NewSong addSongCallback={data => handleAddSongCallBack(data)} />}
+
+      {activeMenu === 1 && (
+        <div>
+          <audio id="youtube" autoPlay={true} controls={true} loop={true} src={audioSrc}></audio>
+        </div>
+      )}
+
     </div>
   );
 }
