@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/yt-music/static/css/main.0bddc44d.chunk.css",
-    "main.js": "/yt-music/static/js/main.f1812ca4.chunk.js",
-    "main.js.map": "/yt-music/static/js/main.f1812ca4.chunk.js.map",
+    "main.js": "/yt-music/static/js/main.b096b697.chunk.js",
+    "main.js.map": "/yt-music/static/js/main.b096b697.chunk.js.map",
     "runtime-main.js": "/yt-music/static/js/runtime-main.880a252b.js",
     "runtime-main.js.map": "/yt-music/static/js/runtime-main.880a252b.js.map",
     "static/js/2.20ad0fe1.chunk.js": "/yt-music/static/js/2.20ad0fe1.chunk.js",
     "static/js/2.20ad0fe1.chunk.js.map": "/yt-music/static/js/2.20ad0fe1.chunk.js.map",
     "index.html": "/yt-music/index.html",
-    "precache-manifest.d532152f76a0ac4ab7f8a17ffd3ae1aa.js": "/yt-music/precache-manifest.d532152f76a0ac4ab7f8a17ffd3ae1aa.js",
+    "precache-manifest.1b719f680f7c5418c0b495144fd70d50.js": "/yt-music/precache-manifest.1b719f680f7c5418c0b495144fd70d50.js",
     "service-worker.js": "/yt-music/service-worker.js",
     "static/css/main.0bddc44d.chunk.css.map": "/yt-music/static/css/main.0bddc44d.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.880a252b.js",
     "static/js/2.20ad0fe1.chunk.js",
     "static/css/main.0bddc44d.chunk.css",
-    "static/js/main.f1812ca4.chunk.js"
+    "static/js/main.b096b697.chunk.js"
   ]
 }
