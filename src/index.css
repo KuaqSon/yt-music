@@ -5,11 +5,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background: #50a3a2;
+  /* background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%); */
 }
 
 code {

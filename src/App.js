@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAudioSource, getAudioInfo } from "./service/audio";
 import "./App.css";
 import NewSong from "./components/NewSong";
+import Player from "./components/Player";
 
 function App() {
   const [audioSrc, setAudioSrc] = useState("");
@@ -49,11 +50,13 @@ function App() {
 
       {activeMenu === 0 && <NewSong addSongCallback={data => handleAddSongCallBack(data)} />}
 
-      {activeMenu === 1 && (
+      {/* {activeMenu === 1 && (
         <div>
           <audio id="youtube" autoPlay={true} controls={true} loop={true} src={audioSrc}></audio>
         </div>
-      )}
+      )} */}
+
+      {activeMenu === 1 && <Player src={audioSrc} name="song" />} 
 
     </div>
   );
