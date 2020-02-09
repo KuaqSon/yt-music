@@ -27,6 +27,7 @@ function App() {
   };
 
   const handleAddSongCallBack = data => {
+    console.log("\nLog ->\n: App -> data", data)
     setAudioSrc(data.src);
     setActiveMenu(1);
   };
@@ -48,16 +49,20 @@ function App() {
         </nav>
       </div>
 
-      {activeMenu === 0 && <NewSong addSongCallback={data => handleAddSongCallBack(data)} />}
-
-      {/* {activeMenu === 1 && (
-        <div>
-          <audio id="youtube" autoPlay={true} controls={true} loop={true} src={audioSrc}></audio>
+      <div className="tabs_cont">
+        <div className={activeMenu === 0 ? "tabs_item" : "tabs_item d-none"}>
+          <NewSong addSongCallback={data => handleAddSongCallBack(data)} />
         </div>
-      )} */}
-
-      {activeMenu === 1 && <Player src={audioSrc} name="song" />} 
-
+        <div className={activeMenu === 1 ? "tabs_item" : "tabs_item d-none"}>
+          <Player src={audioSrc} name="song" />
+        </div>
+        <div className={activeMenu === 2 ? "tabs_item" : "tabs_item d-none"}>
+          <div className="card acrylic">
+            <h3>PlayList</h3>
+            <label>Comming soon...</label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

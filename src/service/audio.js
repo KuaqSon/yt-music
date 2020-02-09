@@ -21,10 +21,11 @@ const getAudioSource = async vid => {
     }
     return response.text().then(data => {
       const parseData = parse_str(data),
-        playerResp = JSON.parse(parseData.player_response);
-
+      playerResp = JSON.parse(parseData.player_response);
+      
+      console.log("\nLog ->\n: parseData", parseData)
       let adaptiveFormats = [];
-
+      
       if (playerResp && playerResp.streamingData && playerResp.streamingData.adaptiveFormats) {
         adaptiveFormats = playerResp.streamingData.adaptiveFormats;
       }
