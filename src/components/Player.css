@@ -115,7 +115,7 @@ input::-moz-focus-outer {
 
 .song-info .song-title {
   font-size: 20px;
-  color: #A81C23;
+  color: #a81c23;
   font-weight: bold;
   margin-bottom: 12px;
   font-weight: 600;
@@ -134,4 +134,43 @@ input::-moz-focus-outer {
   background-position: center;
   background-color: transparent;
   background-repeat: no-repeat;
+}
+
+.playlist {
+}
+
+.pl-item {
+  display: flex;
+  padding: 16px 12px;
+}
+
+.pl-title {
+  white-space: nowrap;
+  overflow: hidden;
+  flex: 1;
+  margin: 0 12px;
+}
+
+.pl-title .pl-title_safe {
+  display: inline-block;
+  position: relative;
+  animation: 3s linear 0s infinite alternate advanced;
+}
+
+@keyframes advanced {
+  0%,
+  25% {
+    transform: translateX(0%);
+    left: 0%;
+  }
+  75%,
+  100% {
+    transform: translateX(-100%);
+    left: 100%;
+  }
+}
+
+.pl-item + .pl-item {
+  margin-top: 12px;
+  border-top: 1px solid #333333;
 }

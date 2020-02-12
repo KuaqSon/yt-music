@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getAudioSource, getAudioInfo } from "../service/audio";
+import { saveToPlayList } from "../service/saveData";
 import Loading from "./Loading";
 
 export default function NewSong({ addSongCallback }) {
@@ -38,7 +39,18 @@ export default function NewSong({ addSongCallback }) {
     Promise.all(promises)
       .then(data => {
         setLoading(false);
-        if (addSongCallback) addSongCallback({ src: data[0], info: data[1] });
+        const info = data[1];
+        if (addSongCallback) addSongCallback({ src: data[0], info });
+
+        saveToPlayList({
+          id: new Date().getTime(),
+          src: data[0],
+          thumbnail_url: info.thumbnail_url,
+          author_name: info.author_name,
+          title: info.title,
+          playing: true
+        });
+
         return data;
       })
       .catch(e => {

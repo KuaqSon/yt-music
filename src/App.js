@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import NewSong from "./components/NewSong";
 import Player from "./components/Player";
+import PlayList from "./components/PlayList";
+import {getPlayList} from "./service/saveData";
 
 function App() {
   const [audioSrc, setAudioSrc] = useState("");
   const [activeMenu, setActiveMenu] = useState(0);
   const [songInfo, setSongInfo] = useState({});
+  const [playlist, setPlaylist] = useState([]);
 
   // useEffect(() => {
   //   getAudioSource("9ue1DivJxes").then(src => {
@@ -33,6 +36,13 @@ function App() {
     setActiveMenu(1);
   };
 
+  const showPlayList = () => {
+    setActiveMenu(2);
+    const pl = getPlayList();
+    console.log("\nLog ->\n: showPlayList -> playlist", pl)
+    setPlaylist(pl)
+  }
+
   return (
     <div className="App">
       {songInfo.thumbnail_url && <div
@@ -48,7 +58,7 @@ function App() {
           <a href="#" className={getNaviClass(1)} onClick={() => setActiveMenu(1)}>
             Player
           </a>
-          <a href="#" className={getNaviClass(2)} onClick={() => setActiveMenu(2)}>
+          <a href="#" className={getNaviClass(2)} onClick={() => showPlayList()}>
             PlayList
           </a>
         </nav>
@@ -62,10 +72,7 @@ function App() {
           <Player src={audioSrc} songInfo={songInfo} />
         </div>
         <div className={activeMenu === 2 ? "tabs_item" : "tabs_item d-none"}>
-          <div className="card acrylic">
-            <h3>PlayList</h3>
-            <label>Comming soon...</label>
-          </div>
+          < PlayList playlist={playlist} />
         </div>
       </div>
 
