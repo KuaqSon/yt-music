@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getAudioSource, getAudioInfo } from "./service/audio";
 import "./App.css";
 import NewSong from "./components/NewSong";
 import Player from "./components/Player";
@@ -7,6 +6,7 @@ import Player from "./components/Player";
 function App() {
   const [audioSrc, setAudioSrc] = useState("");
   const [activeMenu, setActiveMenu] = useState(0);
+  const [songInfo, setSongInfo] = useState({});
 
   // useEffect(() => {
   //   getAudioSource("9ue1DivJxes").then(src => {
@@ -27,13 +27,18 @@ function App() {
   };
 
   const handleAddSongCallBack = data => {
-    console.log("\nLog ->\n: App -> data", data)
+    console.log("\nLog ->\n: App -> data", data);
     setAudioSrc(data.src);
+    setSongInfo(data.info);
     setActiveMenu(1);
   };
 
   return (
     <div className="App">
+      {songInfo.thumbnail_url && <div
+        className="app-background"
+        style={{ backgroundImage: `url(${songInfo.thumbnail_url})`}}
+      ></div>}
       <div className="wrapper">
         <nav className="tabs">
           <div className="selector" style={{ width: "112px", left: `${activeMenu * 112}px` }}></div>
@@ -54,7 +59,7 @@ function App() {
           <NewSong addSongCallback={data => handleAddSongCallBack(data)} />
         </div>
         <div className={activeMenu === 1 ? "tabs_item" : "tabs_item d-none"}>
-          <Player src={audioSrc} name="song" />
+          <Player src={audioSrc} songInfo={songInfo} />
         </div>
         <div className={activeMenu === 2 ? "tabs_item" : "tabs_item d-none"}>
           <div className="card acrylic">
@@ -63,6 +68,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      <footer>Made by Quang Son with ❤</footer>
     </div>
   );
 }

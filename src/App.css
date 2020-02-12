@@ -1,11 +1,64 @@
 .App {
   text-align: center;
+  padding: 0 16px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.app-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  animation: fadein 3s;
+  -moz-animation: fadein 3s; /* Firefox */
+  -webkit-animation: fadein 3s; /* Safari and Chrome */
+  -o-animation: fadein 3s; /* Opera */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .tabs_cont {
   display: flex;
   align-items: stretch;
   justify-content: center;
+  padding-bottom: 20px;
 }
 
 .tabs_cont .tabs_item {
@@ -144,4 +197,10 @@
   color: #d04437;
   font-family: monospace;
   margin-bottom: 16px;
+}
+
+footer {
+  text-align: center;
+  color: #333333;
+  padding: 16px;
 }
