@@ -9,8 +9,8 @@ const saveToPlayList = song => {
     localStorage.setItem(
       "playlist",
       JSON.stringify([
-        ...playlist.filter(p => p.src !== song.src).map(s => ({ ...s, playing: false })),
-        song
+        song,
+        ...playlist.filter(p => p.src !== song.src).map(s => ({ ...s, playing: false }))
       ])
     );
   } else {
@@ -28,12 +28,12 @@ const removeFromPlaylist = song => {
 const getPlayingSong = () => {
   const playlist = getPlayList();
   if (!playlist) return null;
-  
+
   const song = playlist.find(x => x.playing === true);
   return song;
 };
 
-const playSong = songId => {
+const playSong = (songId, play = true) => {
   const playlist = getPlayList();
   if (!playlist) return;
 
@@ -41,7 +41,18 @@ const playSong = songId => {
   if (!song) return;
 
   const rest = playlist.filter(x => x.id !== songId).map(s => ({ ...s, playing: false }));
-  localStorage.setItem("playlist", JSON.stringify([...rest, { ...song, playing: true }]));
+  localStorage.setItem("playlist", JSON.stringify([{ ...song, playing: play }, ...rest]));
 };
 
-export { saveToPlayList, removeFromPlaylist, getPlayList, playSong };
+const playSongBySrc = (src, play = true) => {
+  const playlist = getPlayList();
+  if (!playlist) return;
+
+  const song = playlist.find(x => x.src === src);
+  if (!song) return;
+
+  const rest = playlist.filter(x => x.src !== src).map(s => ({ ...s, playing: false }));
+  localStorage.setItem("playlist", JSON.stringify([{ ...song, playing: play }, ...rest]));
+};
+
+export { saveToPlayList, removeFromPlaylist, getPlayList, playSong, getPlayingSong, playSongBySrc };

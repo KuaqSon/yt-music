@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { playSongBySrc } from "../service/saveData";
 import ReactPlayer from "react-player";
 import "./Player.css";
 
-export default function Player({ src, songInfo }) {
+const Player = forwardRef(({ src, songInfo, playerRef, handleNextSong, handlePreSong }) => {
   // Docs: https://github.com/CookPete/react-player/blob/master/src/demo/App.js
   const [player, setPlayer] = useState({});
   const [played, setPlayed] = useState(0);
@@ -28,10 +29,12 @@ export default function Player({ src, songInfo }) {
   };
 
   const handlePlay = () => {
+    playSongBySrc(src);
     setPlaying(true);
   };
 
   const handlePause = () => {
+    playSongBySrc(src, false);
     setPlaying(false);
   };
 
@@ -42,11 +45,29 @@ export default function Player({ src, songInfo }) {
     };
   };
 
+  const nextSong = () => {
+    if (handleNextSong) handleNextSong();
+  };
+
+  const preSong = () => {
+    if (handlePreSong) handlePreSong();
+  };
+
+  useImperativeHandle(playerRef, () => ({
+    forcePause() {
+      setPlaying(false);
+    }
+  }));
+
   return (
     <div className="card acrylic">
       <div>
-        {songInfo.thumbnail_url && <div className="cover-image" style={{backgroundImage: `url(${songInfo.thumbnail_url})`}}>
-        </div>}
+        {songInfo.thumbnail_url && (
+          <div
+            className="cover-image"
+            style={{ backgroundImage: `url(${songInfo.thumbnail_url})` }}
+          ></div>
+        )}
         <div className="song-info">
           <div className="song-title">{songInfo.title}</div>
           <div className="song-author">{songInfo.author_name}</div>
@@ -70,7 +91,7 @@ export default function Player({ src, songInfo }) {
         </div>
 
         <div className="player-actions">
-          <div className="btn-player">
+          <div className="btn-player" onClick={() => preSong()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -140,7 +161,7 @@ export default function Player({ src, songInfo }) {
               </svg>
             </div>
           )}
-          <div className="btn-player">
+          <div className="btn-player" onClick={() => nextSong()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -166,8 +187,16 @@ export default function Player({ src, songInfo }) {
       </div>
 
       <div style={{ display: "none" }}>
-        <ReactPlayer ref={ref} url={src} onProgress={handleProgress} playing={playing} />
+        <ReactPlayer
+          ref={ref}
+          url={src}
+          onProgress={handleProgress}
+          playing={playing}
+          loop={true}
+        />
       </div>
     </div>
   );
-}
+});
+
+export default Player;

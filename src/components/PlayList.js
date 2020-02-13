@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import "./Player.css";
 
-export default function PlayList({ playlist }) {
-  const handlePause = () => {};
+export default function PlayList({
+  playlist,
+  handlePlaySongFromPlaylist,
+  handlePauseSongFromPlaylist
+}) {
+  const handlePause = song => {
+    if (handlePauseSongFromPlaylist) handlePauseSongFromPlaylist(song);
+  };
 
-  const handlePlay = () => {};
+  const handlePlay = song => {
+    if (handlePlaySongFromPlaylist) handlePlaySongFromPlaylist(song);
+  };
 
   return (
     <div className="card acrylic">
       <div className="playlist">
+        {!playlist && <div>No songs found.</div>}
         {playlist &&
           playlist.map((s, index) => (
             <div className="pl-item" key={index}>
               <div className="pl-action">
                 {!s.playing && (
-                  <div className="btn-player" onClick={() => handlePlay()}>
+                  <div className="btn-player" onClick={() => handlePlay(s)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -38,7 +47,7 @@ export default function PlayList({ playlist }) {
                   </div>
                 )}
                 {s.playing && (
-                  <div className="btn-player" onClick={() => handlePause()}>
+                  <div className="btn-player" onClick={() => handlePause(s)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
