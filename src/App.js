@@ -80,6 +80,16 @@ function App() {
     setSongInfo({ ...nextSong });
   };
 
+  const handleLoadPlayList = () => {
+    const pl = getPlayList();
+    setPlaylist(pl);
+
+    if (!pl || pl.length === 0) {
+      setAudioSrc(null);
+      setSongInfo({});
+    }
+  };
+
   return (
     <div className="App">
       {songInfo.thumbnail_url && (
@@ -121,6 +131,7 @@ function App() {
             handlePlaySongFromPlaylist={handlePlaySongFromPlaylist}
             handlePauseSongFromPlaylist={handlePauseSongFromPlaylist}
             playlist={playlist}
+            loadPlayList={() => handleLoadPlayList()}
           />
         </div>
       </div>

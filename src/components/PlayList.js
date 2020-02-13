@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { removeFromPlaylist } from "../service/saveData";
 import "./Player.css";
 
 export default function PlayList({
   playlist,
   handlePlaySongFromPlaylist,
-  handlePauseSongFromPlaylist
+  handlePauseSongFromPlaylist,
+  loadPlayList
 }) {
   const handlePause = song => {
     if (handlePauseSongFromPlaylist) handlePauseSongFromPlaylist(song);
@@ -14,10 +16,15 @@ export default function PlayList({
     if (handlePlaySongFromPlaylist) handlePlaySongFromPlaylist(song);
   };
 
+  const handleRemove = song => {
+    removeFromPlaylist(song);
+    if (loadPlayList) loadPlayList();
+  };
+
   return (
     <div className="card acrylic">
       <div className="playlist">
-        {!playlist && <div>No songs found.</div>}
+        {(!playlist || playlist.length === 0) && <div>No songs found.</div>}
         {playlist &&
           playlist.map((s, index) => (
             <div className="pl-item" key={index}>
@@ -74,7 +81,28 @@ export default function PlayList({
               <div className="pl-title">
                 <span className="pl-title_safe">{s.title}</span>
               </div>
-              <div className="pl-del">X</div>
+              <div className="btn-player" onClick={() => handleRemove(s)}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  aria-hidden="true"
+                  focusable="false"
+                  width="24px"
+                  height="24px"
+                  style={{
+                    msTransform: "rotate(360deg)",
+                    WebkitTransform: "rotate(360deg)",
+                    transform: "rotate(360deg)"
+                  }}
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z"
+                    fill="#f44336"
+                  />
+                </svg>
+              </div>
             </div>
           ))}
       </div>
