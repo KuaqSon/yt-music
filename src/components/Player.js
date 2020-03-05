@@ -239,7 +239,8 @@ const Player = forwardRef(({ src, songInfo, playerRef, handleNextSong, handlePre
       <div style={{ display: "none" }}>
         <ReactPlayer
           ref={ref}
-          url={src}
+          // url={src}
+          url={songInfo.url}
           onProgress={handleProgress}
           playing={playing}
           loop={loop}

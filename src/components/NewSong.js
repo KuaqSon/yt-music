@@ -48,7 +48,8 @@ export default function NewSong({ addSongCallback }) {
           thumbnail_url: info.thumbnail_url,
           author_name: info.author_name,
           title: info.title,
-          playing: true
+          playing: true,
+          url: info.url
         });
 
         return data;
