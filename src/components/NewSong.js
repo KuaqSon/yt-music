@@ -8,7 +8,7 @@ export default function NewSong({ addSongCallback }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleAddSong = () => {
+  const handleAddSong = (queueOnly = false) => {
     if (!videoUrl) return;
 
     if (videoUrl.indexOf("youtube") < 0 && videoUrl.indexOf("youtu.be") < 0) {
@@ -40,7 +40,7 @@ export default function NewSong({ addSongCallback }) {
       .then(data => {
         setLoading(false);
         const info = data[1];
-        if (addSongCallback) addSongCallback({ src: data[0], info });
+        if (addSongCallback && !queueOnly) addSongCallback({ src: data[0], info });
 
         saveToPlayList({
           id: new Date().getTime(),
@@ -76,6 +76,10 @@ export default function NewSong({ addSongCallback }) {
 
       <button onClick={() => handleAddSong()} className="btn mt-3">
         Play Now
+      </button>
+
+      <button onClick={() => handleAddSong(true)} className="btn mt-3">
+        Add To Queue
       </button>
     </div>
   );
