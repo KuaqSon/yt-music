@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getAudioSource, getAudioInfo } from "../service/audio";
+import { getAudioInfo } from "../service/audio";
 import { saveToPlayList } from "../service/saveData";
 import Loading from "./Loading";
 
@@ -32,32 +32,53 @@ export default function NewSong({ addSongCallback }) {
 
     setError("");
     setLoading(true);
-    const promises = [
-      new Promise(resolve => resolve(getAudioSource(video_id))),
-      new Promise(resolve => resolve(getAudioInfo(video_id)))
-    ];
-    Promise.all(promises)
-      .then(data => {
+
+    getAudioInfo(video_id)
+      .then(info => {
         setLoading(false);
-        const info = data[1];
-        if (addSongCallback && !queueOnly) addSongCallback({ src: data[0], info });
+        if (addSongCallback && !queueOnly) addSongCallback({ src: info.url, info });
 
         saveToPlayList({
           id: new Date().getTime(),
-          src: data[0],
+          src: info.url,
           thumbnail_url: info.thumbnail_url,
           author_name: info.author_name,
           title: info.title,
-          playing: true,
-          url: info.url
+          playing: true
         });
-
-        return data;
       })
       .catch(e => {
+        console.log("\nLog ->\n: handleAddSong -> e", e);
         setError("Something went wrong please try again later.");
         setLoading(false);
       });
+
+    // const promises = [
+    //   new Promise(resolve => resolve(getAudioSource(video_id))),
+    //   new Promise(resolve => resolve(getAudioInfo(video_id)))
+    // ];
+    // Promise.all(promises)
+    //   .then(data => {
+    //     setLoading(false);
+    //     const info = data[1];
+    //     if (addSongCallback && !queueOnly) addSongCallback({ src: data[0], info });
+
+    //     saveToPlayList({
+    //       id: new Date().getTime(),
+    //       src: data[0],
+    //       thumbnail_url: info.thumbnail_url,
+    //       author_name: info.author_name,
+    //       title: info.title,
+    //       playing: true,
+    //       url: info.url
+    //     });
+
+    //     return data;
+    //   })
+    //   .catch(e => {
+    //     setError("Something went wrong please try again later.");
+    //     setLoading(false);
+    //   });
   };
 
   return (

@@ -21,11 +21,11 @@ const getAudioSource = async vid => {
     }
     return response.text().then(data => {
       const parseData = parse_str(data),
-      playerResp = JSON.parse(parseData.player_response);
-      
-      console.log("\nLog ->\n: parseData", parseData)
+        playerResp = JSON.parse(parseData.player_response);
+
+      console.log("\nLog ->\n: parseData", parseData);
       let adaptiveFormats = [];
-      
+
       if (playerResp && playerResp.streamingData && playerResp.streamingData.adaptiveFormats) {
         adaptiveFormats = playerResp.streamingData.adaptiveFormats;
       }
@@ -42,6 +42,8 @@ const getAudioSource = async vid => {
             break;
           case 141:
             quality = "256kbps";
+            break;
+          default:
             break;
         }
         if (quality) audio_streams[quality] = stream.url;

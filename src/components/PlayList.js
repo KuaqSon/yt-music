@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { removeFromPlaylist } from "../service/saveData";
 import "./Player.css";
 
