@@ -10,7 +10,7 @@ The simple usage is to copy the url from a video from youtube then enter in the 
 
 ## Demo
 
-👉 Checkout the live demo at: [nqson.xyz/yt-music](nqson.xyz/yt-music)
+👉 Checkout the live demo at: [nqson.xyz/yt-music](https://nqson.xyz/yt-music/)
 
 Have fun!!
 
