@@ -100,7 +100,7 @@ function App() {
       )}
       <div className="wrapper">
         <nav className="tabs">
-          <div className="selector" style={{ width: "112px", left: `${activeMenu * 112}px` }}></div>
+          <div className="selector" style={{ width: "88px", left: `${activeMenu * 88}px` }}></div>
           <a href="#" className={getNaviClass(0)} onClick={() => setActiveMenu(0)}>
             New
           </a>
