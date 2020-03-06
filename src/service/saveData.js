@@ -37,22 +37,21 @@ const playSong = (songId, play = true) => {
   const playlist = getPlayList();
   if (!playlist) return;
 
-  const song = playlist.find(x => x.id === songId);
-  if (!song) return;
-
-  const rest = playlist.filter(x => x.id !== songId).map(s => ({ ...s, playing: false }));
-  localStorage.setItem("playlist", JSON.stringify([{ ...song, playing: play }, ...rest]));
+  playlist.forEach(song => {
+    song.playing = song.id === songId ? play : false;
+  });
+  localStorage.setItem("playlist", JSON.stringify(playlist));
 };
 
 const playSongBySrc = (src, play = true) => {
   const playlist = getPlayList();
   if (!playlist) return;
 
-  const song = playlist.find(x => x.src === src);
-  if (!song) return;
+  playlist.forEach(song => {
+    song.playing = song.src === src ? play : false;
+  });
 
-  const rest = playlist.filter(x => x.src !== src).map(s => ({ ...s, playing: false }));
-  localStorage.setItem("playlist", JSON.stringify([{ ...song, playing: play }, ...rest]));
+  localStorage.setItem("playlist", JSON.stringify(playlist));
 };
 
 export { saveToPlayList, removeFromPlaylist, getPlayList, playSong, getPlayingSong, playSongBySrc };
