@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/yt-music/static/css/main.71638343.chunk.css",
-    "main.js": "/yt-music/static/js/main.14520a0c.chunk.js",
-    "main.js.map": "/yt-music/static/js/main.14520a0c.chunk.js.map",
+    "main.css": "/yt-music/static/css/main.dd777bf8.chunk.css",
+    "main.js": "/yt-music/static/js/main.0ad19855.chunk.js",
+    "main.js.map": "/yt-music/static/js/main.0ad19855.chunk.js.map",
     "runtime-main.js": "/yt-music/static/js/runtime-main.880a252b.js",
     "runtime-main.js.map": "/yt-music/static/js/runtime-main.880a252b.js.map",
-    "static/js/2.8700d943.chunk.js": "/yt-music/static/js/2.8700d943.chunk.js",
-    "static/js/2.8700d943.chunk.js.map": "/yt-music/static/js/2.8700d943.chunk.js.map",
+    "static/js/2.c4414bae.chunk.js": "/yt-music/static/js/2.c4414bae.chunk.js",
+    "static/js/2.c4414bae.chunk.js.map": "/yt-music/static/js/2.c4414bae.chunk.js.map",
     "index.html": "/yt-music/index.html",
-    "precache-manifest.c5e087ce0a273612d6044eaefd37268d.js": "/yt-music/precache-manifest.c5e087ce0a273612d6044eaefd37268d.js",
+    "precache-manifest.f83437dd24c8be25595950943c76fd3c.js": "/yt-music/precache-manifest.f83437dd24c8be25595950943c76fd3c.js",
     "service-worker.js": "/yt-music/service-worker.js",
-    "static/css/main.71638343.chunk.css.map": "/yt-music/static/css/main.71638343.chunk.css.map"
+    "static/css/main.dd777bf8.chunk.css.map": "/yt-music/static/css/main.dd777bf8.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.880a252b.js",
-    "static/js/2.8700d943.chunk.js",
-    "static/css/main.71638343.chunk.css",
-    "static/js/main.14520a0c.chunk.js"
+    "static/js/2.c4414bae.chunk.js",
+    "static/css/main.dd777bf8.chunk.css",
+    "static/js/main.0ad19855.chunk.js"
   ]
 }

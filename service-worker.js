@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/yt-music/precache-manifest.c5e087ce0a273612d6044eaefd37268d.js"
+  "/yt-music/precache-manifest.f83437dd24c8be25595950943c76fd3c.js"
 );
 
 self.addEventListener('message', (event) => {
