@@ -9,8 +9,8 @@ const saveToPlayList = song => {
     localStorage.setItem(
       "playlist",
       JSON.stringify([
-        song,
-        ...playlist.filter(p => p.src !== song.src).map(s => ({ ...s, playing: false }))
+        ...playlist.filter(p => p.src !== song.src),
+        song
       ])
     );
   } else {
