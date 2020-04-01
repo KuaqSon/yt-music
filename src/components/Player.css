@@ -101,11 +101,20 @@ input::-moz-focus-outer {
 .btn-player {
   cursor: pointer;
   background-color: transparent;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-player:active {
   transform: translate(0px, 2px);
   -webkit-transform: translate(0px, 2px);
+}
+
+.btn-player:hover {
+  border-radius: 8px;
+  background-color: #fafafa;
 }
 
 .song-info {
@@ -144,9 +153,14 @@ input::-moz-focus-outer {
   padding: 16px 12px;
 }
 
+.pl-item:hover {
+  border-radius: 8px;
+  background-color: #ffffff6b;
+}
+
 .pl-title {
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: pre-wrap;
+  text-align: left;
   flex: 1;
   margin: 0 12px;
 }
@@ -172,5 +186,4 @@ input::-moz-focus-outer {
 
 .pl-item + .pl-item {
   margin-top: 12px;
-  border-top: 1px solid #333333;
 }

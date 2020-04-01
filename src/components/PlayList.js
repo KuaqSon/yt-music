@@ -28,58 +28,56 @@ export default function PlayList({
         {playlist &&
           playlist.map((s, index) => (
             <div className="pl-item" key={index}>
-              <div className="pl-action">
-                {!s.playing && (
-                  <div className="btn-player" onClick={() => handlePlay(s)}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlnsXlink="http://www.w3.org/1999/xlink"
-                      aria-hidden="true"
-                      focusable="false"
-                      width="24px"
-                      height="24px"
-                      style={{
-                        msTransform: "rotate(360deg)",
-                        WebkitTransform: "rotate(360deg)",
-                        transform: "rotate(360deg)"
-                      }}
-                      preserveAspectRatio="xMidYMid meet"
-                      viewBox="0 0 512 512"
-                    >
-                      <path
-                        d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248s248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200s-89.5 200-200 200S56 366.5 56 256z"
-                        fill="#1B2021"
-                      />
-                    </svg>
-                  </div>
-                )}
-                {s.playing && (
-                  <div className="btn-player" onClick={() => handlePause(s)}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlnsXlink="http://www.w3.org/1999/xlink"
-                      aria-hidden="true"
-                      focusable="false"
-                      width="24px"
-                      height="24px"
-                      style={{
-                        msTransform: "rotate(360deg)",
-                        WebkitTransform: "rotate(360deg)",
-                        transform: "rotate(360deg)"
-                      }}
-                      preserveAspectRatio="xMidYMid meet"
-                      viewBox="0 0 512 512"
-                    >
-                      <path
-                        d="M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200s-89.5 200-200 200zm96-280v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16zm-112 0v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16z"
-                        fill="#1B2021"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
+              {!s.playing && (
+                <div className="btn-player" onClick={() => handlePlay(s)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    focusable="false"
+                    width="24px"
+                    height="24px"
+                    style={{
+                      msTransform: "rotate(360deg)",
+                      WebkitTransform: "rotate(360deg)",
+                      transform: "rotate(360deg)"
+                    }}
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8 0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248s248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200s-89.5 200-200 200S56 366.5 56 256z"
+                      fill="#1B2021"
+                    />
+                  </svg>
+                </div>
+              )}
+              {s.playing && (
+                <div className="btn-player" onClick={() => handlePause(s)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    focusable="false"
+                    width="24px"
+                    height="24px"
+                    style={{
+                      msTransform: "rotate(360deg)",
+                      WebkitTransform: "rotate(360deg)",
+                      transform: "rotate(360deg)"
+                    }}
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200s-89.5 200-200 200zm96-280v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16zm-112 0v160c0 8.8-7.2 16-16 16h-48c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16z"
+                      fill="#1B2021"
+                    />
+                  </svg>
+                </div>
+              )}
               <div className="pl-title">
-                <span className="pl-title_safe">{s.title}</span>
+                {s.title}
               </div>
               <div className="btn-player" onClick={() => handleRemove(s)}>
                 <svg
