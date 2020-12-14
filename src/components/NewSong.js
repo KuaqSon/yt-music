@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getAudioInfo } from "../service/audio";
+import { getAudioInfo, getAudioSource } from "../service/audio";
 import { saveToPlayList } from "../service/saveData";
 import Loading from "./Loading";
 
@@ -16,7 +16,8 @@ export default function NewSong({ addSongCallback }) {
       return;
     }
 
-    const isMobile = videoUrl.indexOf("youtu.be") > -1 && videoUrl.indexOf("youtube") < 0;
+    const isMobile =
+      videoUrl.indexOf("youtu.be") > -1 && videoUrl.indexOf("youtube") < 0;
 
     let video_id = videoUrl.split(isMobile ? ".be/" : "v=")[1] || "";
 
@@ -33,52 +34,32 @@ export default function NewSong({ addSongCallback }) {
     setError("");
     setLoading(true);
 
-    getAudioInfo(video_id)
-      .then(info => {
+    const promises = [
+      new Promise((resolve) => resolve(getAudioSource(video_id))),
+      new Promise((resolve) => resolve(getAudioInfo(video_id))),
+    ];
+    Promise.all(promises)
+      .then((data) => {
         setLoading(false);
-        if (addSongCallback && !queueOnly) addSongCallback({ src: info.url, info });
+        const info = data[1];
+        const src = data[0] || info.url;
+        if (addSongCallback && !queueOnly) addSongCallback({ src: src, info });
 
         saveToPlayList({
           id: new Date().getTime(),
-          src: info.url,
+          src: src,
           thumbnail_url: info.thumbnail_url,
           author_name: info.author_name,
           title: info.title,
-          playing: !queueOnly
+          playing: !queueOnly,
+          url: info.url,
+          canMobilePlay: !!data[0],
         });
       })
-      .catch(e => {
-        console.log("\nLog ->\n: handleAddSong -> e", e);
+      .catch((e) => {
         setError("Something went wrong please try again later.");
         setLoading(false);
       });
-
-    // const promises = [
-    //   new Promise(resolve => resolve(getAudioSource(video_id))),
-    //   new Promise(resolve => resolve(getAudioInfo(video_id)))
-    // ];
-    // Promise.all(promises)
-    //   .then(data => {
-    //     setLoading(false);
-    //     const info = data[1];
-    //     if (addSongCallback && !queueOnly) addSongCallback({ src: data[0], info });
-
-    //     saveToPlayList({
-    //       id: new Date().getTime(),
-    //       src: data[0],
-    //       thumbnail_url: info.thumbnail_url,
-    //       author_name: info.author_name,
-    //       title: info.title,
-    //       playing: true,
-    //       url: info.url
-    //     });
-
-    //     return data;
-    //   })
-    //   .catch(e => {
-    //     setError("Something went wrong please try again later.");
-    //     setLoading(false);
-    //   });
   };
 
   return (
@@ -88,7 +69,7 @@ export default function NewSong({ addSongCallback }) {
       <div className="d-flex">
         <input
           type="text"
-          onChange={e => setVideoUrl(e.target.value)}
+          onChange={(e) => setVideoUrl(e.target.value)}
           value={videoUrl}
           className="text_input w-100"
           placeholder="Eg: https://www.youtube.com/watch?v=aaaaaaaa"

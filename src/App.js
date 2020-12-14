@@ -98,6 +98,9 @@ function App() {
           style={{ backgroundImage: `url(${songInfo.thumbnail_url})` }}
         ></div>
       )}
+      <div
+          className="app-background-blur"
+        ></div>
       <div className="wrapper">
         <nav className="tabs">
           <div className="selector" style={{ width: "88px", left: `${activeMenu * 88}px` }}></div>

@@ -72,6 +72,7 @@ const Player = forwardRef(({ src, songInfo, playerRef, handleNextSong, handlePre
         <div className="song-info">
           <div className="song-title">{songInfo.title}</div>
           <div className="song-author">{songInfo.author_name}</div>
+          {songInfo.canMobilePlay && <div className="song-addon">Screen off available.</div>}
         </div>
 
         <div className="range-slider">
