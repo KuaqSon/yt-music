@@ -25,7 +25,7 @@
   left: 0;
   right: 0;
   z-index: -1;
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(68px);
 }
 
 @keyframes fadein {
