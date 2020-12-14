@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/yt-music/static/css/main.60ca6451.chunk.css",
+    "main.css": "/yt-music/static/css/main.2f0a6f3f.chunk.css",
     "main.js": "/yt-music/static/js/main.6edaaf90.chunk.js",
     "runtime-main.js": "/yt-music/static/js/runtime-main.ab365654.js",
     "static/js/2.afda960a.chunk.js": "/yt-music/static/js/2.afda960a.chunk.js",
     "index.html": "/yt-music/index.html",
-    "precache-manifest.65810f350dc32902820880ecfac66da7.js": "/yt-music/precache-manifest.65810f350dc32902820880ecfac66da7.js",
+    "precache-manifest.52ea2b33a8263956982c7a7095604db8.js": "/yt-music/precache-manifest.52ea2b33a8263956982c7a7095604db8.js",
     "service-worker.js": "/yt-music/service-worker.js"
   },
   "entrypoints": [
     "static/js/runtime-main.ab365654.js",
     "static/js/2.afda960a.chunk.js",
-    "static/css/main.60ca6451.chunk.css",
+    "static/css/main.2f0a6f3f.chunk.css",
     "static/js/main.6edaaf90.chunk.js"
   ]
 }
