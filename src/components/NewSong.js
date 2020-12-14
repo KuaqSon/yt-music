@@ -43,9 +43,7 @@ export default function NewSong({ addSongCallback }) {
         setLoading(false);
         const info = data[1];
         const src = data[0] || info.url;
-        if (addSongCallback && !queueOnly) addSongCallback({ src: src, info });
-
-        saveToPlayList({
+        const songInfo = {
           id: new Date().getTime(),
           src: src,
           thumbnail_url: info.thumbnail_url,
@@ -54,7 +52,10 @@ export default function NewSong({ addSongCallback }) {
           playing: !queueOnly,
           url: info.url,
           canMobilePlay: !!data[0],
-        });
+        }
+
+        if (addSongCallback && !queueOnly) addSongCallback({ src: src, info: songInfo });
+        saveToPlayList(songInfo);
       })
       .catch((e) => {
         setError("Something went wrong please try again later.");
