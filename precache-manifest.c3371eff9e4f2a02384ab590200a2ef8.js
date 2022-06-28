@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "049e948ab24e5f706775fa5b165915d2",
+    "revision": "7b724ffc30de5f30071281560b6c6dc3",
     "url": "/yt-music/index.html"
   },
   {
-    "revision": "e9515412c751dc9c3ce2",
-    "url": "/yt-music/static/css/main.2f0a6f3f.chunk.css"
+    "revision": "d442afbebfdbe9d51f53",
+    "url": "/yt-music/static/css/main.bcce3f12.chunk.css"
   },
   {
     "revision": "7d83b7e01fabc95eeeaa",
     "url": "/yt-music/static/js/2.afda960a.chunk.js"
   },
   {
-    "revision": "e9515412c751dc9c3ce2",
+    "revision": "d442afbebfdbe9d51f53",
     "url": "/yt-music/static/js/main.6edaaf90.chunk.js"
   },
   {
