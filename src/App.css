@@ -6,6 +6,8 @@
 }
 
 .app-background {
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -25,7 +27,7 @@
   left: 0;
   right: 0;
   z-index: -1;
-  backdrop-filter: blur(68px);
+  backdrop-filter: blur(688px);
 }
 
 @keyframes fadein {
@@ -210,6 +212,6 @@
 
 footer {
   text-align: center;
-  color: #333333;
+  color: #fff;
   padding: 16px;
 }
